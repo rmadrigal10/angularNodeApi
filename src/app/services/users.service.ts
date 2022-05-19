@@ -1,18 +1,32 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { User } from 'src/models/user.model';
+import { User, CreateUserDTO, UpdateUserDTO } from 'src/models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
 
+  private api = 'http://localhost:3000';
+
   constructor(
     private http: HttpClient
   ) { }
 
   getAllUsers(){
-    return this.http.get<User[]>('http://localhost:3000/users');
+    return this.http.get<User[]>(`${this.api}/users`);
+  }
+
+  getUserById(id: string){
+    return this.http.get<User>(`${this.api}/users/${id}`);
+  }
+
+  createUser(dto: CreateUserDTO){
+    return this.http.post<User>(`${this.api}/users`, dto); 
+  }
+
+  updateUser(id: string, dto: UpdateUserDTO){
+    return this.http.put<User>(`${this.api}/users/${id}`, dto);
   }
 }

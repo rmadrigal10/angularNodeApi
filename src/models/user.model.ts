@@ -6,4 +6,7 @@ export interface User {
     email: string
 }
 
-export interface User{};
+export interface CreateUserDTO extends Omit<User, 'id'>{}
+
+export interface UpdateUserDTO extends Partial<User>{}
+
