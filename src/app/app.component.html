@@ -6,16 +6,20 @@
     <button mat-raised-button (click)="getAllUsers()">
       Get Users
     </button>
-    <button mat-raised-button (click)="getUserById('400')">
-      Get User by Id
-    </button>
   </mat-card>
 </div>
 
 <div class="container">
-  
+  <form [formGroup]="form">
+    <label for="Nombre">Nombre</label>
+    <input type="text" formControlName="nombre">
+    <label for="Apellido">Apellido</label>
+    <input type="text" formControlName="apellido">
+    <label for="Apellido">Dirección</label>
+    <input type="text" formControlName="direccion">
+    <label for="email">email</label>
+    <input type="text" formControlName="email">
+    <button type="submit" [disabled]="form.invalid">Submit</button>
+  </form>
 </div>
 
-<button mat-raised-button (click)="createUser()">
-  Get User by Id
-</button>

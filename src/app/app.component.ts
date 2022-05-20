@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { CreateUserDTO, User, UpdateUserDTO } from 'src/models/user.model';
 import { UsersService } from './services/users.service';
+import { Validators, FormGroup, FormBuilder, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -10,17 +11,23 @@ import { UsersService } from './services/users.service';
 export class AppComponent {
   title = 'angularApi';
 
-  userChosen: User = {
-    id: '',
-    nombre: '',
-    apellido: '',
-    direccion: '',
-    email: ''
-  }
+  form!: FormGroup;
+
+  users: User[] = [];
 
   constructor(
-    private userService: UsersService
-  ){}
+    private userService: UsersService,
+    private formBuilder: FormBuilder
+  ){ this.buildForm(); }
+
+  private buildForm(){
+    this.form = this.formBuilder.group({
+      nombre: ['', [Validators.required, Validators.minLength(2)]],
+      apellido: ['', [Validators.required, Validators.minLength(2)]],
+      direccion: ['', [Validators.required, Validators.minLength(20)]],
+      email: ['', [Validators.required, Validators.email]]
+    });
+  }
 
   getAllUsers(){
     this.userService.getAllUsers()
@@ -42,20 +49,34 @@ export class AppComponent {
       apellido: '',
       direccion: '',
       email: ''
-    }
+    } as User;
     this.userService.createUser(user)
-    .subscribe(data => {
-      console.log(data);
+    .subscribe(user => {
+      console.log(user);
     });
   }
 
-  updateUser(){
-    const changes: UpdateUserDTO = {
-      nombre: ''
-    }
-    const id = this.userChosen.id;
-    this.userService.updateUser(id, changes)
-    .subscribe
+  // updateUser(){
+  //   const changes: UpdateUserDTO = {
+  //     nombre: ''
+  //   };
+  //   const id = this.userChosen.id;
+  //   this.userService.updateUser(id, changes)
+  //   .subscribe(data => {
+  //     const userIndex = this.users.findIndex(item => item.id === this.userChosen.id);
+  //     this.users[userIndex] = data;
+  //     this.userChosen = data;
+  //   })
+  // }
+
+  delete(user: User): void {
+    this.users = this.users.filter(h => h !== user);
+    this.userService
+      .deleteUser(user.id);
   }
+
+  // onSubmit(){
+  //   this.createUser.set(this.form.value);
+  // }
 
 }

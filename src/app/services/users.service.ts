@@ -29,4 +29,8 @@ export class UsersService {
   updateUser(id: string, dto: UpdateUserDTO){
     return this.http.put<User>(`${this.api}/users/${id}`, dto);
   }
+
+  deleteUser(id: string){
+    return this.http.get<boolean>(`${this.api}/users/${id}`);
+  }
 }
