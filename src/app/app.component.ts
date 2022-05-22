@@ -43,17 +43,38 @@ export class AppComponent {
     })
   }
 
+  // createUser(){
+  //   const user: CreateUserDTO = {
+  //     nombre: '',
+  //     apellido: '',
+  //     direccion: '',
+  //     email: ''
+  //   } as User;
+  //   this.userService.createUser(user)
+  //   .subscribe(user => {
+  //     this.users.push(user)
+  //   });
+  // }
+
   createUser(){
-    const user: CreateUserDTO = {
-      nombre: '',
-      apellido: '',
-      direccion: '',
-      email: ''
-    } as User;
-    this.userService.createUser(user)
-    .subscribe(user => {
-      console.log(user);
-    });
+   const data = this.form.value;
+   this.userService.createUser(data)
+   .subscribe(data => {
+     this.users.push(data);
+   });
+  }
+
+  get nombre(){
+    return this.form.get('nombre');
+  }
+  get apellido(){
+    return this.form.get('apellido');
+  }
+  get direccion(){
+    return this.form.get('direccion');
+  }
+  get email(){
+    return this.form.get('email');
   }
 
   // updateUser(){
@@ -69,11 +90,11 @@ export class AppComponent {
   //   })
   // }
 
-  delete(user: User): void {
-    this.users = this.users.filter(h => h !== user);
-    this.userService
-      .deleteUser(user.id);
-  }
+  // delete(user: User): void {
+  //   this.users = this.users.filter(h => h !== user);
+  //   this.userService
+  //     .deleteUser(user.id);
+  // }
 
   // onSubmit(){
   //   this.createUser.set(this.form.value);

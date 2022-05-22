@@ -19,7 +19,7 @@
     <input type="text" formControlName="direccion">
     <label for="email">email</label>
     <input type="text" formControlName="email">
-    <button type="submit" [disabled]="form.invalid">Submit</button>
+    <button type="submit" (click)="createUser()" [disabled]="form.invalid">Submit</button>
   </form>
 </div>
 
