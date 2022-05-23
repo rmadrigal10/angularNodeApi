@@ -15,6 +15,8 @@ export class AppComponent {
 
   users: User[] = [];
 
+  columnas: string[] = ['id', 'nombre', 'apellido', 'direccion', 'email'];
+
   constructor(
     private userService: UsersService,
     private formBuilder: FormBuilder
@@ -50,8 +52,10 @@ export class AppComponent {
    this.userService.createUser(data)
    .subscribe(data => {
      this.users.push(data);
+     this.getAllUsers();
    });
   }
+
 
   get nombre(){
     return this.form.get('nombre');
@@ -66,46 +70,19 @@ export class AppComponent {
     return this.form.get('email');
   }
 
-
   deleteUser(user: User){
     this.users = this.users.filter(u => u !== user);
     this.userService.deleteUser(user.id)
     .subscribe();
   }
 
-  // deleteUser(id: string){
-  //   this.userService.deleteUser(id)
-  //   .subscribe(data => {
-  //     console.log('usuario borrado exitosamente');
-  //     window.location.reload();
-  //   })
-  // }
-
-  // updateUser(){
-  //   this.
-  // }
-
-  // updateUser(){
-  //   const changes: UpdateUserDTO = {
-  //     nombre: ''
-  //   };
-  //   const id = this.userChosen.id;
-  //   this.userService.updateUser(id, changes)
-  //   .subscribe(data => {
-  //     const userIndex = this.users.findIndex(item => item.id === this.userChosen.id);
-  //     this.users[userIndex] = data;
-  //     this.userChosen = data;
-  //   })
-  // }
-
-  // delete(user: User): void {
-  //   this.users = this.users.filter(u => u !== user);
-  //   this.userService
-  //     .deleteUser(user).subscribe;
-  // }
-
-  // onSubmit(){
-  //   this.createUser.set(this.form.value);
-  // }
+  resetForm(){
+    const formReset = this.form.value;
+    this.nombre?.setValue(''),
+    this.apellido?.setValue(''),
+    this.direccion?.setValue(''),
+    this.email?.setValue('')
+    return formReset.value;
+  }
 
 }
