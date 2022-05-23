@@ -31,6 +31,7 @@ export class UsersService {
   }
 
   deleteUser(id: string){
-    return this.http.get<boolean>(`${this.api}/users/${id}`);
+    return this.http.delete<User>(`${this.api}/users/${id}`);
   }
+
 }

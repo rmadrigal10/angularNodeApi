@@ -37,24 +37,11 @@ export class AppComponent {
     });
   }
 
-  getUserById(id: string){
-    this.userService.getUserById(id)
-    .subscribe(users => {
-      console.log(users)
-    })
-  }
-
-  // createUser(){
-  //   const user: CreateUserDTO = {
-  //     nombre: '',
-  //     apellido: '',
-  //     direccion: '',
-  //     email: ''
-  //   } as User;
-  //   this.userService.createUser(user)
-  //   .subscribe(user => {
-  //     this.users.push(user)
-  //   });
+  // getUserById(id: string){
+  //   this.userService.getUserById(id)
+  //   .subscribe(users => {
+  //     console.log(users)
+  //   })
   // }
 
   createUser(){
@@ -78,6 +65,13 @@ export class AppComponent {
     return this.form.get('email');
   }
 
+  deleteUser(id: string){
+    this.userService.deleteUser(id)
+    .subscribe(data => {
+      console.log('usuario borrado exitosamente')
+    })
+  }
+
   // updateUser(){
   //   const changes: UpdateUserDTO = {
   //     nombre: ''
@@ -92,9 +86,9 @@ export class AppComponent {
   // }
 
   // delete(user: User): void {
-  //   this.users = this.users.filter(h => h !== user);
+  //   this.users = this.users.filter(u => u !== user);
   //   this.userService
-  //     .deleteUser(user.id);
+  //     .deleteUser(user).subscribe;
   // }
 
   // onSubmit(){

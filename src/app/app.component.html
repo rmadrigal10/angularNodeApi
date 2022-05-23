@@ -21,6 +21,16 @@
   </div>
 </div>
 
+<ul class="heroes">
+  <li *ngFor="let user of users">
+    
+      <span class="badge">{{user.id}}</span> {{user.nombre}}
+    
+    <button class="delete" title="delete hero"
+      (click)="deleteUser(user.id)">x</button>
+  </li>
+</ul>
+
 <div class="container">
   <form [formGroup]="form">
     <label for="Nombre">Nombre</label>
