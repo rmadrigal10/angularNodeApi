@@ -18,8 +18,8 @@ export class AppComponent {
   constructor(
     private userService: UsersService,
     private formBuilder: FormBuilder
-  ){ this.buildForm(),
-    this.getAllUsers(); }
+  ){ this.buildForm()
+    }
 
   private buildForm(){
     this.form = this.formBuilder.group({
@@ -66,13 +66,24 @@ export class AppComponent {
     return this.form.get('email');
   }
 
-  deleteUser(id: string){
-    this.userService.deleteUser(id)
-    .subscribe(data => {
-      console.log('usuario borrado exitosamente');
-      window.location.reload();
-    })
+
+  deleteUser(user: User){
+    this.users = this.users.filter(u => u !== user);
+    this.userService.deleteUser(user.id)
+    .subscribe();
   }
+
+  // deleteUser(id: string){
+  //   this.userService.deleteUser(id)
+  //   .subscribe(data => {
+  //     console.log('usuario borrado exitosamente');
+  //     window.location.reload();
+  //   })
+  // }
+
+  // updateUser(){
+  //   this.
+  // }
 
   // updateUser(){
   //   const changes: UpdateUserDTO = {

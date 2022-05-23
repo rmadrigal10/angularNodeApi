@@ -23,7 +23,7 @@
         <p>{{ user.email }}</p>
         <hr>
         <button class="delete" title="delete hero"
-          (click)="deleteUser(user.id)">Delete User
+          (click)="deleteUser(user)">Delete User
         </button>
       </li>
     </ul>
@@ -32,15 +32,23 @@
 
 <div class="container">
   <form [formGroup]="form">
-    <label for="Nombre">Nombre</label>
-    <input type="text" formControlName="nombre">
-    <label for="Apellido">Apellido</label>
-    <input type="text" formControlName="apellido">
-    <label for="Apellido">Dirección</label>
-    <input type="text" formControlName="direccion">
-    <label for="email">email</label>
-    <input type="text" formControlName="email">
-    <button type="submit" (click)="createUser()" [disabled]="form.invalid">Submit</button>
+    <mat-form-field appearance="fill">
+      <label for="Nombre">Nombre</label>
+      <input matInput type="text" formControlName="nombre">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <label for="Apellido">Apellido</label>
+    <input matInput type="text" formControlName="apellido">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <label for="Apellido">Dirección</label>
+      <input matInput type="text" formControlName="direccion">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <label for="email">email</label>
+      <input matInput type="text" formControlName="email">
+    </mat-form-field>
+    <button mat-raised-button type="submit" (click)="createUser()" [disabled]="form.invalid">Submit</button>
   </form>
 </div>
 

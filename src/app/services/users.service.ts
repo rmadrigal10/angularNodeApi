@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { User, CreateUserDTO, UpdateUserDTO } from 'src/models/user.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,7 @@ export class UsersService {
     return this.http.put<User>(`${this.api}/users/${id}`, dto);
   }
 
-  deleteUser(id: string){
+  deleteUser(id: string): Observable<User>{
     return this.http.delete<User>(`${this.api}/users/${id}`);
   }
 
