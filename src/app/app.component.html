@@ -11,25 +11,24 @@
   <div>
     <ul>
       <li *ngFor="let user of users">
+        <br>
         <p>{{ user.id }}</p>
+        <hr>
         <p>{{ user.nombre }}</p>
+        <hr>
         <p>{{ user.apellido }}</p>
+        <hr>
         <p>{{ user.direccion }}</p>
+        <hr>
         <p>{{ user.email }}</p>
+        <hr>
+        <button class="delete" title="delete hero"
+          (click)="deleteUser(user.id)">Delete User
+        </button>
       </li>
     </ul>
   </div>
 </div>
-
-<ul class="heroes">
-  <li *ngFor="let user of users">
-    
-      <span class="badge">{{user.id}}</span> {{user.nombre}}
-    
-    <button class="delete" title="delete hero"
-      (click)="deleteUser(user.id)">x</button>
-  </li>
-</ul>
 
 <div class="container">
   <form [formGroup]="form">

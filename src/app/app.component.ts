@@ -18,7 +18,8 @@ export class AppComponent {
   constructor(
     private userService: UsersService,
     private formBuilder: FormBuilder
-  ){ this.buildForm(); }
+  ){ this.buildForm(),
+    this.getAllUsers(); }
 
   private buildForm(){
     this.form = this.formBuilder.group({
@@ -68,7 +69,8 @@ export class AppComponent {
   deleteUser(id: string){
     this.userService.deleteUser(id)
     .subscribe(data => {
-      console.log('usuario borrado exitosamente')
+      console.log('usuario borrado exitosamente');
+      window.location.reload();
     })
   }
 
