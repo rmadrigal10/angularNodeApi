@@ -7,6 +7,18 @@
       Get Users
     </button>
   </mat-card>
+
+  <div>
+    <ul>
+      <li *ngFor="let user of users">
+        <p>{{ user.id }}</p>
+        <p>{{ user.nombre }}</p>
+        <p>{{ user.apellido }}</p>
+        <p>{{ user.direccion }}</p>
+        <p>{{ user.email }}</p>
+      </li>
+    </ul>
+  </div>
 </div>
 
 <div class="container">

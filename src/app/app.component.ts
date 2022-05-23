@@ -32,6 +32,7 @@ export class AppComponent {
   getAllUsers(){
     this.userService.getAllUsers()
     .subscribe(users => {
+      this.users = users;
       console.log(users);
     });
   }
