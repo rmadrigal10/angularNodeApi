@@ -1,0 +1,23 @@
+<div class="container">
+    <form [formGroup]="form">
+      <mat-form-field appearance="fill">
+        <label for="Nombre">Nombre</label>
+        <input matInput type="text" formControlName="nombre">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <label for="Apellido">Apellido</label>
+        <input matInput type="text" formControlName="apellido">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <label for="Apellido">Dirección</label>
+        <input matInput type="text" formControlName="direccion">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <label for="email">email</label>
+        <input matInput type="text" formControlName="email">
+      </mat-form-field>
+      <button mat-raised-button >Submit</button>
+      <button mat-raised-button routerLink="/users" routerLinkActive="active">Back</button>
+    </form>
+  </div>
+  

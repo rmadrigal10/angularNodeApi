@@ -18,13 +18,15 @@ import { AppComponent } from './app.component';
 import { PostUsersComponent } from './post-users/post-users.component';
 import { GetUsersComponent } from './get-users/get-users.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
+import { PatchUserComponent } from './patch-user/patch-user.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     PostUsersComponent,
-    GetUsersComponent
+    GetUsersComponent,
+    PatchUserComponent
   ],
   imports: [
     AppRoutingModule,

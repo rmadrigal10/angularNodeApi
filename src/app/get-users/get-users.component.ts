@@ -22,6 +22,7 @@ export class GetUsersComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getAllUsers();
   }
 
   getAllUsers(){
@@ -32,12 +33,11 @@ export class GetUsersComponent implements OnInit {
     });
   }
 
-  deleteUser(user: User){
-    this.users = this.users.filter(u => u !== user);
-    this.userService.deleteUser(user.id)
-    .subscribe();
-  }
-
-
+  deleteUser(id: string){
+      this.userService.deleteUser(id)
+      .subscribe(data => {
+        console.log('usuario borrado exitosamente');
+      })
+    }
 
 }
