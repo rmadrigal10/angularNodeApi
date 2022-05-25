@@ -4,6 +4,6 @@ import { PostUsersComponent } from '../post-users/post-users.component';
 
 export const routes: Routes = [
     {path: 'users', component: GetUsersComponent},
-    {path: 'post/:id', component: PostUsersComponent},
+    {path: 'post', component: PostUsersComponent},
     {path: '', redirectTo: '/users', pathMatch: 'full'}
   ]
