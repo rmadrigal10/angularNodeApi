@@ -28,9 +28,10 @@
       <button mat-raised-button [routerLink]="['/']" class="btn-back">
         Back
       </button>
-      <button mat-raised-button (click)="createUser()" [disabled]="form.invalid" class="btn-sub">
+      <button mat-raised-button *ngIf="data.id==null" (click)="createUser()" [disabled]="form.invalid" class="btn-sub">
         Submit
       </button>
+      <button mat-raised-button *ngIf="!data.id!==null">Update User</button>
     </div>
   </form>
 </div>

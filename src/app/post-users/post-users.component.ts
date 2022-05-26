@@ -1,9 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { UsersService } from '../services/users.service';
-import { CreateUserDTO, User } from '../../models/user.model';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { lastValueFrom } from 'rxjs';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import {
+  UsersService
+} from '../services/users.service';
+import {
+  CreateUserDTO,
+  User
+} from '../../models/user.model';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators
+} from '@angular/forms';
+import {
+  ActivatedRoute,
+  Router
+} from '@angular/router';
+import {
+  lastValueFrom
+} from 'rxjs';
 
 @Component({
   selector: 'app-post-users',
@@ -14,25 +31,53 @@ export class PostUsersComponent implements OnInit {
 
   form!: FormGroup;
   users: User[] = [];
-  id: string;
+
+  data: {
+    id: string,
+    nombre: string,
+    apellido: string,
+    direccion: string,
+    email: string
+  };
   usrData!: any;
 
   constructor(private userService: UsersService,
     private route: ActivatedRoute,
     private router: Router,
     private buildForm: FormBuilder) {
-      this.id = this.route.snapshot.paramMap.get('id') !;
-      this.getUser();
-
+    this.data = {
+      id: this.route.snapshot.paramMap.get('id')!,
+      nombre: this.route.snapshot.paramMap.get('nombre') !,
+      apellido: this.route.snapshot.paramMap.get('apellido') !,
+      direccion: this.route.snapshot.paramMap.get('direccion') !,
+      email: this.route.snapshot.paramMap.get('email') !
+    }
+    if (this.data) {
+      this.form = this.buildForm.group({
+        nombre: [this.data.nombre, [Validators.required, Validators.minLength(2)]],
+        apellido: [this.data.apellido, [Validators.required, Validators.minLength(2)]],
+        direccion: [this.data.direccion, [Validators.required, Validators.minLength(5)]],
+        email: [this.data.email, [Validators.required, Validators.email]]
+      });
+    } else {
+      this.form = this.buildForm.group({
+        nombre: ['', [Validators.required, Validators.minLength(2)]],
+        apellido: ['', [Validators.required, Validators.minLength(2)]],
+        direccion: ['', [Validators.required, Validators.minLength(20)]],
+        email: ['', [Validators.required, Validators.email]]
+      });
+    }
   }
 
+
+
   ngOnInit(): void {
-    
-
-        console.log('entro');
 
 
-  
+    console.log('entro');
+
+
+
 
   }
 
@@ -50,29 +95,7 @@ export class PostUsersComponent implements OnInit {
     this.form.reset();
   }
 
-  async getUser(){
-    const observer = this.userService.getUserById(this.id);
-
-    this.usrData = await lastValueFrom(observer);
-    console.log(this.usrData[0]);
-    if(this.id  ){
-      this.form = this.buildForm.group({
-        nombre: [this.usrData[0].nombre, [Validators.required, Validators.minLength(2)]],
-        apellido: [this.usrData[0].apellido, [Validators.required, Validators.minLength(2)]],
-        direccion: [this.usrData[0].direccion, [Validators.required, Validators.minLength(20)]],
-        email: [this.usrData[0].email, [Validators.required, Validators.email]]
-      });
-    }else{
-      this.form = this.buildForm.group({
-        nombre: ['', [Validators.required, Validators.minLength(2)]],
-        apellido: ['', [Validators.required, Validators.minLength(2)]],
-        direccion: ['', [Validators.required, Validators.minLength(20)]],
-        email: ['', [Validators.required, Validators.email]]
-      });
-    }
-  }
-    // this.route.snapshot.paramMap.get('element');
-    
   
+
 
 }
