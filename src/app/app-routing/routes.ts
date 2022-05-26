@@ -6,6 +6,6 @@ import { PatchUserComponent } from '../patch-user/patch-user.component';
 export const routes: Routes = [
     {path: 'users', component: GetUsersComponent},
     {path: 'new', component: PostUsersComponent},
-    {path: 'edit/:id', component: PostUsersComponent},
+    {path: 'edit', component: PostUsersComponent},
     {path: '', redirectTo: '/users', pathMatch: 'full'}
   ]

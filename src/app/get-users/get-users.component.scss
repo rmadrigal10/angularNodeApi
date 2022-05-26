@@ -1,0 +1,37 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+mat-card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    width: 400px;
+    .get{
+        position: relative;
+        right: 20px;
+    }
+    // .new{
+    //     position: relative;
+    //     left: 10px;
+    // }
+}
+
+.tbl-usrs{
+    margin-top: 30px;
+    margin-bottom: 60px;
+    .mat-header-cell{
+        padding-right: 80px;
+    }
+    .edit{
+        color: blue;
+    }
+    .delete{
+        color: red;
+        position: relative;
+        left: 15px;
+    }
+}

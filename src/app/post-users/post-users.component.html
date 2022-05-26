@@ -1,22 +1,73 @@
 <div class="container">
   <form [formGroup]="form">
-    <mat-form-field appearance="fill">
-      <label for="Nombre">Nombre</label>
-      <input matInput type="text" formControlName="nombre">
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <label for="Apellido">Apellido</label>
-      <input matInput type="text" formControlName="apellido">
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <label for="Apellido">Dirección</label>
-      <input matInput type="text" formControlName="direccion">
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <label for="email">email</label>
-      <input matInput type="text" formControlName="email">
-    </mat-form-field>
-    <button mat-raised-button (click)="createUser()" [disabled]="form.invalid">Submit</button>
-    <button mat-raised-button [routerLink]="['/']">Back</button>
+    <p>
+      <mat-form-field appearance="fill">
+        <label for="Nombre">Nombre</label>
+        <input matInput type="text" formControlName="nombre">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="fill">
+        <label for="Apellido">Apellido</label>
+        <input matInput type="text" formControlName="apellido">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="fill">
+        <label for="Apellido">Dirección</label>
+        <input matInput type="text" formControlName="direccion">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="fill">
+        <label for="email">email</label>
+        <input matInput type="text" formControlName="email">
+      </mat-form-field>
+    </p>
+    <div class="btn">
+      <button mat-raised-button [routerLink]="['/']" class="btn-back">
+        Back
+      </button>
+      <button mat-raised-button (click)="createUser()" [disabled]="form.invalid" class="btn-sub">
+        Submit
+      </button>
+    </div>
   </form>
 </div>
+
+<!-- <div *ngIf="" class="container">
+  <form [formGroup]="form">
+    <p>
+      <mat-form-field appearance="fill">
+        <label for="Nombre">Nombre</label>
+        <input matInput type="text" formControlName="nombre">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="fill">
+        <label for="Apellido">Apellido</label>
+        <input matInput type="text" formControlName="apellido">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="fill">
+        <label for="Apellido">Dirección</label>
+        <input matInput type="text" formControlName="direccion">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="fill">
+        <label for="email">email</label>
+        <input matInput type="text" formControlName="email">
+      </mat-form-field>
+    </p>
+    <div class="btn">
+      <button mat-raised-button [routerLink]="['/']" class="btn-back">
+        Back
+      </button>
+      <button mat-raised-button (click)="createUser()" [disabled]="form.invalid" class="btn-sub">
+        Submit
+      </button>
+    </div>
+  </form>
+</div> -->

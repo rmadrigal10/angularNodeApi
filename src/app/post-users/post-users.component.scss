@@ -1,0 +1,24 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+mat-form-field{
+    width: 500px;
+}
+
+.btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .btn-back{
+        position: relative;
+        right: 10px;
+    }
+    .btn-sub{
+        position: relative;
+        left: 5px;
+    }
+}

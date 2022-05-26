@@ -1,47 +1,54 @@
-<mat-card>
+<div class="container">
+  <mat-card>
     <mat-card-header>
       <!-- Welcome to {{title}} -->
     </mat-card-header>
-    <button mat-raised-button (click)="getAllUsers()">
+    <button mat-raised-button (click)="getAllUsers()" class="get">
       Get Users
     </button>
-    <button mat-raised-button routerLink="/new" routerLinkActive="active">New User</button>
-</mat-card>
+    <button mat-raised-button routerLink="/new" routerLinkActive="active" class="new">
+      New User
+    </button>
+  </mat-card>
+</div>
 
-<table mat-table [dataSource]="users">
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef>Id</th>
-    <td mat-cell *matCellDef="let user of users"> {{  user.id  }} </td>
-  </ng-container>
-  <ng-container matColumnDef="nombre">
-    <th mat-header-cell *matHeaderCellDef>Nombre</th>
-    <td mat-cell *matCellDef="let element"> {{  element.nombre  }} </td>
-  </ng-container>
-  <ng-container matColumnDef="apellido">
-    <th mat-header-cell *matHeaderCellDef>Apellido</th>
-    <td mat-cell *matCellDef="let element"> {{  element.apellido  }} </td>
-  </ng-container>
-  <ng-container matColumnDef="direccion">
-    <th mat-header-cell *matHeaderCellDef>Dirección</th>
-    <td mat-cell *matCellDef="let element"> {{  element.direccion  }} </td>
-  </ng-container>
-  <ng-container matColumnDef="email">
-    <th mat-header-cell *matHeaderCellDef>email</th>
-    <td mat-cell *matCellDef="let element"> {{  element.email  }} </td>
-  </ng-container>
-  <ng-container matColumnDef="actions">
-    <th mat-header-cell *matHeaderCellDef>Acciones</th>
-    <td mat-cell *matCellDef="let user of users">
-      <a [routerLink]="['/edit/', user.id]">
-        <fa-icon [icon]="faPen"></fa-icon>
-      </a>
-      <a href="" >
-        <fa-icon [icon]="faXmark" (click)="deleteUser(user.id)"></fa-icon>
-      </a>
-    </td>
-  </ng-container>
+<div class="container">
+  <table mat-table [dataSource]="users" class="tbl-usrs">
+    <ng-container matColumnDef="id" class="id">
+      <th mat-header-cell *matHeaderCellDef>Id</th>
+      <td mat-cell *matCellDef="let element"> {{  element.id  }} </td>
+    </ng-container>
+    <ng-container matColumnDef="nombre" class="nombre">
+      <th mat-header-cell *matHeaderCellDef>Nombre</th>
+      <td mat-cell *matCellDef="let element"> {{  element.nombre  }} </td>
+    </ng-container>
+    <ng-container matColumnDef="apellido" class="apellido">
+      <th mat-header-cell *matHeaderCellDef>Apellido</th>
+      <td mat-cell *matCellDef="let element"> {{  element.apellido  }} </td>
+    </ng-container>
+    <ng-container matColumnDef="direccion" class="direccion">
+      <th mat-header-cell *matHeaderCellDef>Dirección</th>
+      <td mat-cell *matCellDef="let element"> {{  element.direccion  }} </td>
+    </ng-container>
+    <ng-container matColumnDef="email" class="email">
+      <th mat-header-cell *matHeaderCellDef>email</th>
+      <td mat-cell *matCellDef="let element"> {{  element.email  }} </td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef class="actions-hdr">Acciones</th>
+      <td mat-cell *matCellDef="let element">
+        <a [routerLink]="['/edit/', element]">
+          <fa-icon [icon]="faPen" class="edit"></fa-icon>
+        </a>
+        <a href="" >
+          <fa-icon [icon]="faXmark" (click)="deleteUser(element.id)" class="delete"></fa-icon>
+        </a>
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+  </table>
+</div>
 
-  <tr mat-header-row *matHeaderRowDef="columnas"></tr>
-  <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
-</table>
 
