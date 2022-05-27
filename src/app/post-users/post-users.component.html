@@ -31,7 +31,7 @@
       <button mat-raised-button *ngIf="data.id==null" (click)="createUser()" [disabled]="form.invalid" class="btn-sub">
         Submit
       </button>
-      <button mat-raised-button *ngIf="!data.id!==null">Update User</button>
+      <button mat-raised-button *ngIf="data.id!==null" (click)="updateUser()">Update User</button>
     </div>
   </form>
 </div>

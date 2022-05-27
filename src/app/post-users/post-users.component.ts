@@ -1,26 +1,8 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
-import {
-  UsersService
-} from '../services/users.service';
-import {
-  CreateUserDTO,
-  User
-} from '../../models/user.model';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators
-} from '@angular/forms';
-import {
-  ActivatedRoute,
-  Router
-} from '@angular/router';
-import {
-  lastValueFrom
-} from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { UsersService } from '../services/users.service';
+import { CreateUserDTO, UpdateUserDTO, User } from '../../models/user.model';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-users',
@@ -72,13 +54,6 @@ export class PostUsersComponent implements OnInit {
 
 
   ngOnInit(): void {
-
-
-    console.log('entro');
-
-
-
-
   }
 
   createUser() {
@@ -95,6 +70,19 @@ export class PostUsersComponent implements OnInit {
     this.form.reset();
   }
 
+  updateUser(){
+    const changes: UpdateUserDTO = {
+      nombre: this.form.get('nombre')?.value,
+      apellido: this.form.get('apellido')?.value,
+      direccion: this.form.get('direccion')?.value,
+      email: this.form.get('email')?.value
+    }
+    const id = this.data.id;
+    this.userService.updateUser(id, changes)
+    .subscribe(data => {
+      console.log('udated', data);
+    });
+  }
   
 
 
