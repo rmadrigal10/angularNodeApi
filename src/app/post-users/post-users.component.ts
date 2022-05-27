@@ -82,6 +82,7 @@ export class PostUsersComponent implements OnInit {
     .subscribe(data => {
       console.log('udated', data);
     });
+    this.router.navigate(['/users/']);
   }
   
 
