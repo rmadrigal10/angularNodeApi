@@ -1,26 +1,8 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
-import {
-  UsersService
-} from '../services/users.service';
-import {
-  CreateUserDTO,
-  User
-} from '../../models/user.model';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators
-} from '@angular/forms';
-import {
-  ActivatedRoute,
-  Router
-} from '@angular/router';
-import {
-  lastValueFrom
-} from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { UsersService } from '../services/users.service';
+import { UpdateUserDTO, CreateUserDTO, User } from '../../models/user.model';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-users',
@@ -31,6 +13,7 @@ export class PostUsersComponent implements OnInit {
 
   form!: FormGroup;
   users: User[] = [];
+  id!: string;
 
   data: {
     id: string,
@@ -42,9 +25,9 @@ export class PostUsersComponent implements OnInit {
   usrData!: any;
 
   constructor(private userService: UsersService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private buildForm: FormBuilder) {
+              private route: ActivatedRoute,
+              private router: Router,
+              private buildForm: FormBuilder) {
     this.data = {
       id: this.route.snapshot.paramMap.get('id')!,
       nombre: this.route.snapshot.paramMap.get('nombre') !,
@@ -54,10 +37,10 @@ export class PostUsersComponent implements OnInit {
     }
     if (this.data) {
       this.form = this.buildForm.group({
-        nombre: [this.data.nombre, [Validators.required, Validators.minLength(2)]],
-        apellido: [this.data.apellido, [Validators.required, Validators.minLength(2)]],
-        direccion: [this.data.direccion, [Validators.required, Validators.minLength(5)]],
-        email: [this.data.email, [Validators.required, Validators.email]]
+        nombre: this.data.nombre, 
+        apellido: this.data.apellido, 
+        direccion: this.data.direccion,
+        email: this.data.email
       });
     } else {
       this.form = this.buildForm.group({
@@ -69,16 +52,7 @@ export class PostUsersComponent implements OnInit {
     }
   }
 
-
-
   ngOnInit(): void {
-
-
-    console.log('entro');
-
-
-
-
   }
 
   createUser() {
@@ -88,11 +62,18 @@ export class PostUsersComponent implements OnInit {
       direccion: this.form.get('direccion')?.value,
       email: this.form.get('email')?.value
     }
-    this.userService.createUser(user)
+    if(this.id !== null) {
+      this.userService.updateUser(this.id, user).subscribe(data => {
+        console.log('actualizado', data)
+      })
+    }else{
+      this.userService.createUser(user)
       .subscribe(res => {
         console.log('esta es la userdata', res);
       })
     this.form.reset();
+    }
+    
   }
 
   
